@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Daily Journal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link your custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+
+</head>
+<body >
+
+    <div id="journal-body">
+        <h1>My Daily Journal</h1>
+
+        <!-- Form to Add Entry -->
+        <form method="POST">
+            <textarea name="content" rows="5" placeholder="Dear Diary... 🪄" required></textarea>
+            <button type="submit">Enter</button>
+        </form>
+
+        <!-- Entries Section -->
+        <h2>Past Entries</h2>
+        <div>
+            {% for entry in entries %}
+                <div class="entry">
+                    <div class="content">{{ entry.content }}</div>
+                    <div class="timestamp">{{ entry.created_at }}</div>
+                </div>
+            {% else %}
+                <p class="no-entries">Your journal is waiting for your first memory 🌱</p>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>
